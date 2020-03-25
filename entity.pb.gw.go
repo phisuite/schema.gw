@@ -32,17 +32,17 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 
 var (
-	filter_EntityAPI_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_EntityReadAPI_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_EntityAPI_List_0(ctx context.Context, marshaler runtime.Marshaler, client EntityAPIClient, req *http.Request, pathParams map[string]string) (EntityAPI_ListClient, runtime.ServerMetadata, error) {
+func request_EntityReadAPI_List_0(ctx context.Context, marshaler runtime.Marshaler, client EntityReadAPIClient, req *http.Request, pathParams map[string]string) (EntityReadAPI_ListClient, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityAPI_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityReadAPI_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -60,10 +60,10 @@ func request_EntityAPI_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 var (
-	filter_EntityAPI_Get_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0, "version": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_EntityReadAPI_Get_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0, "version": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_EntityAPI_Get_0(ctx context.Context, marshaler runtime.Marshaler, client EntityAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EntityReadAPI_Get_0(ctx context.Context, marshaler runtime.Marshaler, client EntityReadAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
@@ -99,7 +99,7 @@ func request_EntityAPI_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityAPI_Get_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityReadAPI_Get_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -108,7 +108,7 @@ func request_EntityAPI_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_EntityAPI_Get_0(ctx context.Context, marshaler runtime.Marshaler, server EntityAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EntityReadAPI_Get_0(ctx context.Context, marshaler runtime.Marshaler, server EntityReadAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
@@ -141,7 +141,7 @@ func local_request_EntityAPI_Get_0(ctx context.Context, marshaler runtime.Marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_EntityAPI_Get_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_EntityReadAPI_Get_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -150,7 +150,7 @@ func local_request_EntityAPI_Get_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_EntityAPI_Create_0(ctx context.Context, marshaler runtime.Marshaler, client EntityAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EntityWriteAPI_Create_0(ctx context.Context, marshaler runtime.Marshaler, client EntityWriteAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Entity
 	var metadata runtime.ServerMetadata
 
@@ -160,35 +160,6 @@ func request_EntityAPI_Create_0(ctx context.Context, marshaler runtime.Marshaler
 	}
 	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-
-	protoReq.Name, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
 
 	msg, err := client.Create(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -196,7 +167,7 @@ func request_EntityAPI_Create_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_EntityAPI_Create_0(ctx context.Context, marshaler runtime.Marshaler, server EntityAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EntityWriteAPI_Create_0(ctx context.Context, marshaler runtime.Marshaler, server EntityWriteAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Entity
 	var metadata runtime.ServerMetadata
 
@@ -208,41 +179,12 @@ func local_request_EntityAPI_Create_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
-	}
-
-	protoReq.Name, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
 	msg, err := server.Create(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_EntityAPI_Update_0(ctx context.Context, marshaler runtime.Marshaler, client EntityAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EntityWriteAPI_Update_0(ctx context.Context, marshaler runtime.Marshaler, client EntityWriteAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Entity
 	var metadata runtime.ServerMetadata
 
@@ -288,7 +230,7 @@ func request_EntityAPI_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_EntityAPI_Update_0(ctx context.Context, marshaler runtime.Marshaler, server EntityAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EntityWriteAPI_Update_0(ctx context.Context, marshaler runtime.Marshaler, server EntityWriteAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Entity
 	var metadata runtime.ServerMetadata
 
@@ -335,10 +277,10 @@ func local_request_EntityAPI_Update_0(ctx context.Context, marshaler runtime.Mar
 }
 
 var (
-	filter_EntityAPI_Activate_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0, "version": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_EntityWriteAPI_Activate_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0, "version": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_EntityAPI_Activate_0(ctx context.Context, marshaler runtime.Marshaler, client EntityAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EntityWriteAPI_Activate_0(ctx context.Context, marshaler runtime.Marshaler, client EntityWriteAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
@@ -374,7 +316,7 @@ func request_EntityAPI_Activate_0(ctx context.Context, marshaler runtime.Marshal
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityAPI_Activate_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityWriteAPI_Activate_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -383,7 +325,7 @@ func request_EntityAPI_Activate_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_EntityAPI_Activate_0(ctx context.Context, marshaler runtime.Marshaler, server EntityAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EntityWriteAPI_Activate_0(ctx context.Context, marshaler runtime.Marshaler, server EntityWriteAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
@@ -416,7 +358,7 @@ func local_request_EntityAPI_Activate_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_EntityAPI_Activate_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_EntityWriteAPI_Activate_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -426,10 +368,10 @@ func local_request_EntityAPI_Activate_0(ctx context.Context, marshaler runtime.M
 }
 
 var (
-	filter_EntityAPI_Deactivate_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0, "version": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_EntityWriteAPI_Deactivate_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0, "version": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_EntityAPI_Deactivate_0(ctx context.Context, marshaler runtime.Marshaler, client EntityAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EntityWriteAPI_Deactivate_0(ctx context.Context, marshaler runtime.Marshaler, client EntityWriteAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
@@ -465,7 +407,7 @@ func request_EntityAPI_Deactivate_0(ctx context.Context, marshaler runtime.Marsh
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityAPI_Deactivate_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EntityWriteAPI_Deactivate_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -474,7 +416,7 @@ func request_EntityAPI_Deactivate_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_EntityAPI_Deactivate_0(ctx context.Context, marshaler runtime.Marshaler, server EntityAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EntityWriteAPI_Deactivate_0(ctx context.Context, marshaler runtime.Marshaler, server EntityWriteAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Options
 	var metadata runtime.ServerMetadata
 
@@ -507,7 +449,7 @@ func local_request_EntityAPI_Deactivate_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_EntityAPI_Deactivate_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_EntityWriteAPI_Deactivate_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -516,19 +458,19 @@ func local_request_EntityAPI_Deactivate_0(ctx context.Context, marshaler runtime
 
 }
 
-// RegisterEntityAPIHandlerServer registers the http handlers for service EntityAPI to "mux".
-// UnaryRPC     :call EntityAPIServer directly.
+// RegisterEntityReadAPIHandlerServer registers the http handlers for service EntityReadAPI to "mux".
+// UnaryRPC     :call EntityReadAPIServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-func RegisterEntityAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EntityAPIServer) error {
+func RegisterEntityReadAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EntityReadAPIServer) error {
 
-	mux.Handle("GET", pattern_EntityAPI_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_EntityReadAPI_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("GET", pattern_EntityAPI_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_EntityReadAPI_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -537,103 +479,111 @@ func RegisterEntityAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EntityAPI_Get_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EntityReadAPI_Get_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EntityAPI_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_EntityAPI_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_EntityAPI_Create_0(rctx, inboundMarshaler, server, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PUT", pattern_EntityAPI_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_EntityAPI_Update_0(rctx, inboundMarshaler, server, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PATCH", pattern_EntityAPI_Activate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_EntityAPI_Activate_0(rctx, inboundMarshaler, server, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Activate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PATCH", pattern_EntityAPI_Deactivate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_EntityAPI_Deactivate_0(rctx, inboundMarshaler, server, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Deactivate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EntityReadAPI_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterEntityAPIHandlerFromEndpoint is same as RegisterEntityAPIHandler but
+// RegisterEntityWriteAPIHandlerServer registers the http handlers for service EntityWriteAPI to "mux".
+// UnaryRPC     :call EntityWriteAPIServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+func RegisterEntityWriteAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EntityWriteAPIServer) error {
+
+	mux.Handle("POST", pattern_EntityWriteAPI_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_EntityWriteAPI_Create_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PUT", pattern_EntityWriteAPI_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_EntityWriteAPI_Update_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_EntityWriteAPI_Activate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_EntityWriteAPI_Activate_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Activate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_EntityWriteAPI_Deactivate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_EntityWriteAPI_Deactivate_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Deactivate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+// RegisterEntityReadAPIHandlerFromEndpoint is same as RegisterEntityReadAPIHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterEntityAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterEntityReadAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -653,23 +603,23 @@ func RegisterEntityAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 		}()
 	}()
 
-	return RegisterEntityAPIHandler(ctx, mux, conn)
+	return RegisterEntityReadAPIHandler(ctx, mux, conn)
 }
 
-// RegisterEntityAPIHandler registers the http handlers for service EntityAPI to "mux".
+// RegisterEntityReadAPIHandler registers the http handlers for service EntityReadAPI to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterEntityAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterEntityAPIHandlerClient(ctx, mux, NewEntityAPIClient(conn))
+func RegisterEntityReadAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterEntityReadAPIHandlerClient(ctx, mux, NewEntityReadAPIClient(conn))
 }
 
-// RegisterEntityAPIHandlerClient registers the http handlers for service EntityAPI
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "EntityAPIClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "EntityAPIClient"
+// RegisterEntityReadAPIHandlerClient registers the http handlers for service EntityReadAPI
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "EntityReadAPIClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "EntityReadAPIClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "EntityAPIClient" to call the correct interceptors.
-func RegisterEntityAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EntityAPIClient) error {
+// "EntityReadAPIClient" to call the correct interceptors.
+func RegisterEntityReadAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EntityReadAPIClient) error {
 
-	mux.Handle("GET", pattern_EntityAPI_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_EntityReadAPI_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -678,18 +628,18 @@ func RegisterEntityAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EntityAPI_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EntityReadAPI_List_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EntityAPI_List_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_EntityReadAPI_List_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_EntityAPI_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_EntityReadAPI_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -698,94 +648,14 @@ func RegisterEntityAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EntityAPI_Get_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EntityReadAPI_Get_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EntityAPI_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_EntityAPI_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_EntityAPI_Create_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PUT", pattern_EntityAPI_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_EntityAPI_Update_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PATCH", pattern_EntityAPI_Activate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_EntityAPI_Activate_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Activate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PATCH", pattern_EntityAPI_Deactivate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_EntityAPI_Deactivate_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_EntityAPI_Deactivate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EntityReadAPI_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -793,29 +663,154 @@ func RegisterEntityAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 }
 
 var (
-	pattern_EntityAPI_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v0", "entities"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_EntityReadAPI_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"schema", "entity", "v0", "inspect"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_EntityAPI_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"v0", "entities", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
-
-	pattern_EntityAPI_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"v0", "entities", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
-
-	pattern_EntityAPI_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"v0", "entities", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
-
-	pattern_EntityAPI_Activate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v0", "entities", "name", "version", "activate"}, "", runtime.AssumeColonVerbOpt(true)))
-
-	pattern_EntityAPI_Deactivate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v0", "entities", "name", "version", "deactivate"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_EntityReadAPI_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"schema", "entity", "v0", "inspect", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
-	forward_EntityAPI_List_0 = runtime.ForwardResponseStream
+	forward_EntityReadAPI_List_0 = runtime.ForwardResponseStream
 
-	forward_EntityAPI_Get_0 = runtime.ForwardResponseMessage
+	forward_EntityReadAPI_Get_0 = runtime.ForwardResponseMessage
+)
 
-	forward_EntityAPI_Create_0 = runtime.ForwardResponseMessage
+// RegisterEntityWriteAPIHandlerFromEndpoint is same as RegisterEntityWriteAPIHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterEntityWriteAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.Dial(endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
 
-	forward_EntityAPI_Update_0 = runtime.ForwardResponseMessage
+	return RegisterEntityWriteAPIHandler(ctx, mux, conn)
+}
 
-	forward_EntityAPI_Activate_0 = runtime.ForwardResponseMessage
+// RegisterEntityWriteAPIHandler registers the http handlers for service EntityWriteAPI to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterEntityWriteAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterEntityWriteAPIHandlerClient(ctx, mux, NewEntityWriteAPIClient(conn))
+}
 
-	forward_EntityAPI_Deactivate_0 = runtime.ForwardResponseMessage
+// RegisterEntityWriteAPIHandlerClient registers the http handlers for service EntityWriteAPI
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "EntityWriteAPIClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "EntityWriteAPIClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "EntityWriteAPIClient" to call the correct interceptors.
+func RegisterEntityWriteAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EntityWriteAPIClient) error {
+
+	mux.Handle("POST", pattern_EntityWriteAPI_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_EntityWriteAPI_Create_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PUT", pattern_EntityWriteAPI_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_EntityWriteAPI_Update_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_EntityWriteAPI_Activate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_EntityWriteAPI_Activate_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Activate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_EntityWriteAPI_Deactivate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_EntityWriteAPI_Deactivate_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_EntityWriteAPI_Deactivate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+var (
+	pattern_EntityWriteAPI_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"schema", "entity", "v0", "create"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_EntityWriteAPI_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"schema", "entity", "v0", "update", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_EntityWriteAPI_Activate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"schema", "entity", "v0", "activate", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_EntityWriteAPI_Deactivate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"schema", "entity", "v0", "deactivate", "name", "version"}, "", runtime.AssumeColonVerbOpt(true)))
+)
+
+var (
+	forward_EntityWriteAPI_Create_0 = runtime.ForwardResponseMessage
+
+	forward_EntityWriteAPI_Update_0 = runtime.ForwardResponseMessage
+
+	forward_EntityWriteAPI_Activate_0 = runtime.ForwardResponseMessage
+
+	forward_EntityWriteAPI_Deactivate_0 = runtime.ForwardResponseMessage
 )
